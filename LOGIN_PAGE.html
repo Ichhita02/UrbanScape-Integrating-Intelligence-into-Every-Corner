@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login and Registration Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(a1.jpg);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+    position: sticky; /* Sticky navigation bar */
+    top: 0;
+    width: 100%;
+    z-index: 10; /* Ensure nav is above other content */
+    background-color: transparent;
+    padding: 1rem 0;
+}
+
+/* Navigation bar items */
+.navbar {
+    background-color: black;
+    padding: 1rem 0;
+    padding-right: 2px;
+}
+
+/* Navbar brand and nav links */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.75rem; /* Larger font size for UrbanScape */
+}
+
+/* Image size adjustment */
+.navbar-brand img {
+    width: 60px; /* Adjusted size */
+    height: 40px; /* Adjusted size */
+    margin-right: 10px; /* Space between the logo and text */
+}
+
+/* Gradient text for UrbanScape */
+.brand-name {
+    background: linear-gradient(to right, #ff66b2, #3366ff); /* Gradient from pink to blue */
+    -webkit-background-clip: text;
+    color: transparent; /* Make text color transparent so gradient is visible */
+    font-weight: bold;
+    font-size: 2rem; /* Larger text size */
+    letter-spacing: 2px; /* Added spacing for a better effect */
+}
+
+/* Navbar links and button styling */
+.navbar-nav .nav-link {
+    color: #fff;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition for color and background */
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff;
+    background: linear-gradient(to right, #ff66b2, #3366ff); /* Gradient on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional shadow for hover effect */
+}
+
+/* Navbar active state */
+.navbar-nav .nav-link:focus, .navbar-nav .nav-link.active {
+    color: #fff;
+    background: linear-gradient(to right, #ff66b2, #3366ff);
+}
+
+/* Styling for the Login/Signup as a button */
+.navbar-nav .nav-item:last-child .nav-link {
+    padding: 12px 30px;
+    font-weight: bold;
+    background: linear-gradient(to right, #00bfff, #1e90ff);
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar-nav .nav-item:last-child .nav-link:hover {
+    background: linear-gradient(to right, #1e90ff, #00bfff);
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-item:last-child .nav-link:focus,
+.navbar-nav .nav-item:last-child .nav-link.active {
+    background: linear-gradient(to right, #00bfff, #1e90ff);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Content wrapper */
+.content-wrapper {
+    width: 100%;
+    padding-top: 2%; /* Ensure it accounts for the navbar height */
+    position: relative;
+    z-index: 1;
+}
+
+
+        .form-container {
+            width: 380px;
+            height: 500px;
+            margin-top: 13%;
+            position: relative;
+            background: transparent;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px hwb(154 54% 9% / 0.738);
+            overflow: hidden;
+            margin-left: 65%;
+            padding: 10px;
+
+        }
+        .button-box {
+            width: 220px;
+            margin: 35px auto;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            background: #eee;
+            border-radius: 30px;
+        }
+        .toggle-btn {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .toggle-btn.active {
+            background: linear-gradient(to right, #4caf50, #81c784);
+            color: #fff;
+            border-radius: 30px;
+        }
+        form {
+            position: absolute;
+            top: 120px;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        form.active {
+            display: flex;
+        }
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .checkbox {
+            width: 80%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .submit-btn {
+            width: 80%;
+            padding: 10px;
+            background: linear-gradient(to right, #4caf50, #81c784);
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #message {
+            margin-top: 10px;
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="p3.png" alt="Logo" width="60" height="80" class="d-inline-block align-text-top"> <!-- Image size adjusted -->
+                    <span class="brand-name">UrbanScape</span> <!-- Applied gradient to text -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="UrbanScape.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="signup.html">Login/Signup</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+    <div class="form-container">
+        <div class="button-box">
+            <button type="button" class="toggle-btn active" id="loginBtn" onclick="toggleForm('login')">Log In</button>
+            <button type="button" class="toggle-btn" id="registerBtn" onclick="toggleForm('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="active" action="connect.php" method="post">
+            <input type="text" id="loginUser" placeholder="Username" class="input-field" required>
+            <input type="password" id="loginPassword" placeholder="Password" class="input-field" required>
+            <div class="checkbox">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe" style="color: white;">Remember Me</label>
+            </div>
+            <button type="button" class="submit-btn" onclick="loginUser()">Log In</button>
+        </form>
+
+        <!-- Registration Form -->
+        <form id="registerForm">
+            <input type="text" id="username" placeholder="Username" class="input-field" required>
+            <input type="email" id="email" placeholder="Email" class="input-field" required>
+            <input type="password" id="password" placeholder="Password" class="input-field" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" class="input-field" required>
+            <div class="checkbox">
+                <input type="checkbox" id="terms">
+                <label for="terms" style="color: white;">I agree to the terms & conditions</label>
+            </div>
+            <button type="button" class="submit-btn" onclick="registerUser()">Register</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Toggle between Login and Register forms
+        function toggleForm(formType) {
+            const loginForm = document.getElementById("loginForm");
+            const registerForm = document.getElementById("registerForm");
+            const loginBtn = document.getElementById("loginBtn");
+            const registerBtn = document.getElementById("registerBtn");
+
+            if (formType === "login") {
+                loginForm.classList.add("active");
+                registerForm.classList.remove("active");
+                loginBtn.classList.add("active");
+                registerBtn.classList.remove("active");
+            } else {
+                registerForm.classList.add("active");
+                loginForm.classList.remove("active");
+                registerBtn.classList.add("active");
+                loginBtn.classList.remove("active");
+            }
+        }
+
+        // Login Functionality
+        function loginUser() {
+            const username = document.getElementById("loginUser").value;
+            const password = document.getElementById("loginPassword").value;
+
+            if (!username || !password) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            alert(`Logged in successfully!\nUsername: ${username}`);
+        }
+
+        // Register Functionality
+        function registerUser() {
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const terms = document.getElementById("terms").checked;
+            const message = document.getElementById("message");
+
+            // Reset message
+            message.style.display = "none";
+
+            // Validation
+            if (!username || !email || !password || !confirmPassword) {
+                message.textContent = "Please fill out all fields.";
+                message.style.display = "block";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                message.textContent = "Passwords do not match.";
+                message.style.display = "block";
+                return;
+            }
+
+            if (!terms) {
+                message.textContent = "You must agree to the terms & conditions.";
+                message.style.display = "block";
+                return;
+            }
+
+            alert(`Registration successful!\nUsername: ${username}\nEmail: ${email}`);
+        }
+    </script>
+</body>
+</html>
